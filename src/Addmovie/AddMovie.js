@@ -32,6 +32,14 @@ function AddMovie({ addMovie }) {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (title===""||desc===""||imgSrc===""||posterUrl===""||rate===1)
+    {alert("Please fill in all the inputs to add a movie !!");
+    setPosterUrl("");
+    setRate(1);
+    setTitle("");
+    setDesc("");
+    setImgSrc("");}
+    else{
     addMovie({
       title,
       desc,
@@ -44,11 +52,11 @@ function AddMovie({ addMovie }) {
     setTitle("");
     setDesc("");
     setImgSrc("");
-  };
+   } };
   return (
     <>
       <Button className="add-button" variant="primary" onClick={handleShow}>
-        ADD a Film
+        Add a Film
       </Button>
 
       <Modal
@@ -109,7 +117,7 @@ function AddMovie({ addMovie }) {
                 activeColor="#ffd700"
               />
             </Form.Group>
-            <Button variant="primary" type="submit">
+            <Button variant="primary" type="submit" onClick={handleClose}>
               Submit
             </Button>
           </Form>

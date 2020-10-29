@@ -16,8 +16,11 @@ function App() {
       rate: 3,
     },
     {
-      imgSrc:"https://media.services.cinergy.ch/media/box1600/72e9cf475c04c3ed336264d3f9034babf9e2b328.jpg" ,     title: "Bad Boys for Life",
-      desc:"The Bad Boys Mike Lowrey and Marcus Burnett are back together for one last ride in the highly anticipated Bad Boys for Life.",
+      imgSrc:
+        "https://media.services.cinergy.ch/media/box1600/72e9cf475c04c3ed336264d3f9034babf9e2b328.jpg",
+      title: "Bad Boys for Life",
+      desc:
+        "The Bad Boys Mike Lowrey and Marcus Burnett are back together for one last ride in the highly anticipated Bad Boys for Life.",
       posterUrl: "https://123movies4u.vip/bad-boys-for-life/",
       rate: 5,
     },
@@ -26,7 +29,7 @@ function App() {
         "https://fr.web.img6.acsta.net/pictures/20/07/08/17/43/1461793.jpg",
       title: "Ava",
       desc:
-      "Ava is a deadly assassin who works for a black ops organization, traveling the globe specializing in high profile hits. When a job goes dangerously wrong she is forced to fight for her own survival.",
+        "Ava is a deadly assassin who works for a black ops organization, traveling the globe specializing in high profile hits. When a job goes dangerously wrong she is forced to fight for her own survival.",
       posterUrl: "https://123movies4u.vip/ava/",
       rate: 4,
     },
@@ -34,8 +37,7 @@ function App() {
       imgSrc:
         "https://m.media-amazon.com/images/M/MV5BMDNkODA5ZGQtODczOS00OTQxLThhMTItMjk0ZmNhMDM0YjNmXkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_.jpg",
       title: "Dolittle",
-      desc:
-        "A physician discovers that he can talk to animals.",
+      desc: "A physician discovers that he can talk to animals.",
       posterUrl: "https://123movies4u.vip/dolittle/",
       rate: 4,
     },
@@ -67,23 +69,21 @@ function App() {
       rate: 5,
     },
   ]);
+  const [searchTitle, setSearchTitle] = useState("");
+  const [searchRate, setSearchRate] = useState(1);
   const addMovie = (movie) => {
     setMovies((movies) => [...movies, movie]);
   };
-  const searchMovie = (searchM) => {
-    setMovies(
-      movies.filter(
-        (el) =>
-          el.title.includes(searchM.searchTitle) ||
-          el.rate >= parseInt(searchM.searchRate)
-      )
-    );
+  const searchMovie = (search) => {
+    setSearchTitle(search);
   };
   return (
     <div className="App">
-      <AddMovie addMovie={addMovie} />
-      <Filter searchMovie={searchMovie} />
-      <MovieList Movielist={movies} />
+        <div className="filter-container">
+          <AddMovie addMovie={addMovie} />
+          <Filter searchMovie={searchMovie} setSearchRate={setSearchRate}/>
+      </div>
+      <MovieList Movielist={movies} searchRate={searchRate} searchTitle={searchTitle} />
     </div>
   );
 }
